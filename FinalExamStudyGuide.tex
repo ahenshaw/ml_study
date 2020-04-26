@@ -269,28 +269,100 @@ repeat
 
 \section*{L17 Recommender Systems \textemdash{} Tue Mar 10}
 \begin{QandA}
-    \item Define the recommendation systems, why using Recommender Systems?
+
+    \item Define the recommendation systems, why use Recommender Systems?
     \begin{answered}
+        Recommendation systems are software agents that elicit the interests 
+        and preferences of individual consumers and make recommendations accordingly.
+        They have the potential to support and improve the quality of the decisions 
+        consumers make while searching for and selecting products online.
+
+        \textbf{Value for the customer}
+        \begin{itemize}
+            \item Find things that are interesting
+            \item Narrow down the set of choices
+            \item Help to explore the space of options
+            \item Discover new things
+            \item Entertainment
+        \end{itemize}
+        \textbf{Value for the provider}
+        \begin{itemize}
+            \item Additional and probably unique personalized service for the customer
+            \item Increase trust and customer loyalty
+            \item Increase sales, click through rates, conversion etc.
+            \item Opportunities for promotion, persuasion
+            \item Obtain more knowledge about customers
+        \end{itemize}
     \end{answered}
     
-    \item What types of recommendation systems, list them, then draw diagrams show the working mechanism of each?
+    \item What types of recommendation systems, list them, then draw
+          diagrams show the working mechanism of each?
     \begin{answered}
+        \begin{enumerate}
+            \item Content-based recommenders \textemdash{} Characteristic information
+            \item Collaborative filtering recommenders \textemdash{} User-item interactions
+        \end{enumerate}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\textwidth]{recommenders.png}
+            \caption{Recommender Types}
+            \label{fig:recommenders}
+        \end{figure}
+
     \end{answered}
     
-    \item List advantages and disadvantages of both collaborative filtering and content-based recommenders.
+    \item List advantages and disadvantages of both collaborative 
+          filtering and content-based recommenders.
     \begin{answered}
+        \begin{itemize}
+            \item \textbf{Collaborative filtering recommenders}
+
+            \textbf{Advantages}
+                \begin{itemize}
+                    \item Doesn't require any knowledge about the products themselves
+                \end{itemize}
+
+            \textbf{Disadvantages}
+                \begin{itemize}
+                    \item Can't recommend products if you don't have user reviews
+                    \item Difficult to make good recommendations for brand-new users
+                    \item Tends to favor popular products with lots of reviews
+                \end{itemize}
+
+            \item \textbf{Content-based recommenders}
+
+            \textbf{Advantages}
+                \begin{itemize}
+                    \item Works even when a product has no user reviews
+                \end{itemize}
+
+            \textbf{Disadvantages}
+                \begin{itemize}
+                    \item Needs descriptive data for every product that you want to recommend
+                    \item Difficult to implement for many kinds of large product databases
+                \end{itemize}
+        \end{itemize}
     \end{answered}
     
     \item How to fill rates of users who have not rated any movies?
     \begin{answered}
+        Perform \textit{Mean Normalization}, \textcolor{Maroon}{?? then assign 0 to each non-ranked movie.??}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\textwidth]{mean_normalization.png}
+            \caption{Mean Normalization}
+            \label{fig:normalization}
+        \end{figure}
+
     \end{answered}
 
 \end{QandA}
 
 \section*{L18 Large Scale and Online Learning  \textemdash{} Thu Mar 12}
 \begin{QandA}
-    \item Supervised Learning, Semi-Supervised, and Unsupervised Learning for what kinds of applications can be used? 
-          What is the different between them in terms of input and output samples?
+    \item Supervised Learning, Semi-Supervised, and Unsupervised Learning 
+          for what kinds of applications can be used? 
+          What is the difference between them in terms of input and output samples?
     \begin{answered}
     \end{answered}
       
