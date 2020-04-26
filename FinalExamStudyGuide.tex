@@ -1,12 +1,19 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
 \usepackage{enumitem}
+\usepackage{graphicx}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{lipsum}
 \usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
 \usepackage[scaled]{helvet}
 \renewcommand\familydefault{\sfdefault} 
 \usepackage[T1]{fontenc}
+\usepackage{listings}
+
+\lstset{
+  mathescape
+}
 
 \newenvironment{QandA}{\begin{enumerate}[label=\bfseries\arabic*.]\bfseries}
 {\end{enumerate}}
@@ -21,183 +28,462 @@
   
 \section*{Guaranteed questions}
 \begin{QandA}
+    \item What is machine learning (ML)? 
+    \begin{answered} 
+        A set of methods that can automatically detect patterns in
+        data, and then use the uncovered patterns to predict future
+        data, or to perform other kinds of decision making under
+        uncertainty (such as planning how to collect more data!)
+    \end{answered}
 
-\item What is machine learning (ML)? 
-\begin{answered} 
-    A set of methods that can automatically detect patterns in
-    data, and then use the uncovered patterns to predict future
-    data, or to perform other kinds of decision making under
-    uncertainty (such as planning how to collect more data!)
-\end{answered}
+    \item What are the main ML types? 
+    \begin{answered} 
+        The main types are:
+        \begin{enumerate}
+            \item Supervised Learning 
+            \item Unsupervised Learning
+            \item Semi-Supervised Learning
+            \item Reinforcement Learning 
+        \end{enumerate}
+    \end{answered}
 
-\item What are the main ML types? 
-\begin{answered} 
-    The main types are:
-    \begin{enumerate}
-        \item Supervised Learning 
-        \item Unsupervised Learning
-        \item Semi-Supervised Learning
-        \item Reinforcement Learning 
-    \end{enumerate}
-\end{answered}
+    \item What ML algorithms have you studied after the midterm exam?
+    \begin{answered} 
+        \begin{enumerate}
+        \item K-Means Clustering
+        \item Hierarchical Clustering
+        \item Recommender Systems
+        \item Large Scale and Online Learning
+        \item Ensemble Learning
+        \item k-Nearest Neighbors (kNNs)
+        \item Principle Components Analysis (PCA)
+        \item Recurrent Neural Networks
+        \item Reinforcement Learning
+        \item Autoencoders
+        \item Bayesian Networks
+        \end{enumerate}
+    \end{answered}
 
-\item What ML algorithms you studied after the midterm exam?
-\begin{answered} 
-    \begin{enumerate}
-    \item K-Means Clustering
-    \item Hierarchical Clustering
-    \item Recommender Systems
-    \item Large Scale and Online Learning
-    \item Ensemble Learning
-    \item k-Nearest Neighbors (kNNs)
-    \item Principle Components Analysis (PCA)
-    \item Recurrent Neural Networks
-    \item Reinforcement Learning
-    \item Autoencoders
-    \item Bayesian Networks
-    \end{enumerate}
-\end{answered}
+    \item Which is more important to you \textemdash{} model accuracy, or model
+    performance, support your answer with an example? \textcolor{red}{This is a
+    partial answer, you need to provide a simple example and your
+    opinion.}
+    \begin{answered} 
+        The model accuracy, or model performance is based on your
+        opinion supported by a simple example (hint: all answers are
+        correct such as either one or both together based on the
+        example you provide).
+    \end{answered}
 
-\item Which is more important to you \textemdash{} model accuracy, or model
-performance, support your answer with an example? \textcolor{red}{This is a
-partial answer, you need to provide a simple example and your
-opinion.}
-
-\begin{answered} 
-    The model accuracy, or model performance is based on your
-    opinion supported by a simple example (hint: all answers are
-    correct such as either one or both together based on the
-    example you provide).
-\end{answered}
-
-\item What are advantages and disadvantages of Hidden Markov Mode
-\begin{answered}
-    \textcolor{red}{(25 Bayesian Networks \textemdash{} Thu, Apr16}
-\end{answered}
+    \item What are advantages and disadvantages of the Hidden Markov Model?
+    \begin{answered}
+        \textcolor{red}{(25 Bayesian Networks \textemdash{} Thu, Apr 16}
+    \end{answered}
 \end{QandA}
 
-\section*{L15 K-Means Clustering \textemdash{} Tue Mar3}
+\section*{L15 K-Means Clustering \textemdash{} Tue Mar 3}
 \begin{QandA}
     \item List, then define the common clustering algorithms.
-    \item What are the two main steps of K-means Algorithm? 
-    \item Write the pseudocode of K-means Algorithm
-    \item How k-means algorithm works?
-    \item List advantages and disadvantages of k-Means.
+    \begin{answered}
+        \begin{description}
+            \item[K-Means clustering:] partitions data into k distinct clusters based on distance to the centroid of a cluster.
+            \item[Hierarchical clustering:] builds a multilevel hierarchy of clusters by creating a cluster tree.
+            \item[Gaussian mixture models:] models clusters as a mixture of multivariate normal density components.
+            \item[Self-organizing maps:] use neural networks that learn the topology and distribution of the data.
+            \item[Hidden Markov models:] use observed data to recover the sequence of states.
+        \end{description}
+    \end{answered}
+
+
+    \item What are the two main steps of the k-means algorithm? 
+    \begin{answered}
+        \begin{enumerate}
+            \item Assign
+            \item Optimize (Cost Function)
+        \end{enumerate}
+    \end{answered}
+
+    \item Write the pseudocode of the k-means algorithm.
+    \begin{answered}
+        \begin{lstlisting}
+Randomly initialize $K$ cluster centroids $\mu_1, \mu_2,\mu_3, \ldots ,\mu_K \in \mathbb{R}^n$
+repeat 
+{ 
+    for i = 1 to m
+        $c^{(i)}$ := index (from 1 to $K$) of cluster centroid closest to $x^{(i)}$
+    for $k = 1$ to $K$
+        $\mu_k$  := average (mean) of points assigned to cluster $k$
+}
+        \end{lstlisting}
+    \end{answered}
+
+    \item How does the k-means algorithm work?
+    \begin{answered}
+        The way k-means algorithm works is as follows:
+        \begin{enumerate}
+            \item Specify number of clusters K.
+            \item Initialize centroids by first shuffling the dataset and then randomly selecting K data points for the centroids without replacement.
+            \item Keep iterating until there is no change to the centroids (i.e., assignment of data points to clusters isn’t changing).
+            \begin{enumerate}
+                \item Compute the sum of the squared distance between data points and all centroids.
+                \item Assign each data point to the closest cluster (centroid).
+                \item Compute the centroids for the clusters by taking the average of the all data points that belong to each cluster.
+            \end{enumerate}
+        \end{enumerate}
+    \end{answered}
+
+    \item List advantages and disadvantages of k-means.
+    \begin{answered}
+        \textbf{Advantages} 
+        \begin{itemize}
+            \item  Easy to implement
+            \item With a large number of variables, K-Means may be computationally faster than (than what??)
+            \item k-Means may produce tighter clusters than hierarchical clustering
+            \item An instance can change cluster (move to another cluster) when the centroids are recomputed. 
+        \end{itemize}   
+        
+        \textbf{Disadvantages}
+        \begin{itemize}
+            \item Difficult to predict the number of clusters (K-Value)
+            \item Initial seeds have a strong impact on the final results
+            \item The order of the data has an impact on the final results
+            \item Sensitive to scale: rescaling your datasets (normalization or standardization) will completely change results. While this itself is not bad, not realizing that you have to spend extra time on to scaling your data might be bad. 
+        \end{itemize}   
+    \end{answered}
 \end{QandA}
 
 \section*{L16 Hierarchical Clustering \textemdash{} Thu Mar 5}
 \begin{QandA}
     \item What is cluster analysis? 
+    \begin{answered}
+        \begin{itemize}
+            \item Cluster: A collection of data objects
+            \begin{itemize}
+                \item similar (or related) to one another within the same group
+                \item dissimilar (or unrelated) to the objects in other groups
+            \end{itemize}
+            \item Cluster analysis (or clustering, data segmentation, \ldots)
+            \begin{itemize} 
+                \item Finding similarities between data according to the characteristics found in the
+                      data and grouping similar data objects into clusters
+            \end{itemize}
+            \item Unsupervised learning: no predefined classes 
+                  (i.e., learning by observations vs. learning by examples: supervised)
+        \end{itemize}
+    \end{answered}
+
     \item What are the typical applications of cluster analysis? 
+    \begin{answered}
+        \begin{itemize}
+            \item As a stand-alone tool to get insight into data distribution.
+            \item As a preprocessing step for other algorithms.
+        \end{itemize}
+    \end{answered}
+
     \item List, then define the two approaches of hierarchical clustering.
+    \begin{answered}
+        \begin{itemize}
+            \item Agglomerative: a bottom-up strategy
+            \begin{itemize}
+                \item Initially each data object is in its own (atomic) cluster.
+                \item Then merge these atomic clusters into larger and larger clusters.
+            \end{itemize}
+            \item Divisive: a top-down strategy
+            \begin{itemize}
+                \item Initially, all objects are in one single cluster.
+                \item Then the cluster is subdivided into smaller and smaller clusters.
+            \end{itemize}
+        \end{itemize}
+    \end{answered}
+
     \item List all steps of the hierarchical clustering of agglomerative (bottom-up) approach.
+    \begin{answered}
+        \begin{description}
+            \item[Step 1:] Make each data point a single-point cluster $\rightarrow$ That forms $N$ clusters
+            \item[Step 2:] Take the two closest data points and make them one cluster $\rightarrow$ That forms $N - 1$ clusters 
+            \item[Step 3:] Take \textbf{the two closest clusters} and make them one cluster $\rightarrow$ That forms $N - 2$ clusters
+            \item[Step 4:] Repeat Step 3 until there is only one cluster
+            \item[Step 5:] Finish
+        \end{description}
+    \end{answered}
+
     \item Define the dendrograms, then illustrate how do dendrograms work with a diagram.
+    \begin{answered}
+        A dendrogram is a diagram that shows the hierarchical relationship 
+        between objects.
+        \begin{itemize}
+            \item A binary tree that shows how clusters are merged/split hierarchically 
+            \item Each node on the tree is a cluster; each leaf node is a singleton cluster
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[width=\textwidth]{dendogram.png}
+                \caption{Dendogram}
+                \label{fig:dendogram}
+            \end{figure}
+
+            A clustering of the data objects is obtained by cutting the dendrogram
+            at the desired level, then each connected component forms a cluster
+        \end{itemize}
+    \end{answered}
+
     \item List, then define all possible methods of merging the clusters that depend on the distance measures.
+    \begin{answered}
+        \begin{description}
+            \item[Single-link] The distance between two clusters is represented by 
+                               the distance of the \textcolor{Maroon}{\textbf{closest pair of data objects}} 
+                               belonging to different clusters.
+            \item[Complete-link] The distance between two clusters is represented by 
+                                 the distance of the \textcolor{Maroon}{\textbf{farthest pair of data objects}} 
+                                 belonging to different clusters.
+            \item[Average-link] The distance between two clusters is represented by 
+                                the average distance of \textcolor{Maroon}{\textbf{all pairs of data objects}} 
+                                belonging to different clusters.
+            \item[Centroid distance] The distance between two clusters is represented by 
+                                     \textcolor{Maroon}{\textbf{the means of the clusters}}.
+        \end{description}
+    \end{answered}
+
     \item What are the advantages and disadvantages of hierarchical clustering?
+    \begin{answered}
+        \textbf{Advantages} 
+        \begin{itemize}
+            \item Hierarchical clustering outputs a hierarchy, i.e., a 
+                structure that is more informative than the unstructured 
+                set of flat clusters returned by k-means. Therefore, it is 
+                easier to decide on the number of clusters by looking at the dendrograms 
+            \item Easy to implement 
+        \end{itemize}
+        \textbf{Disadvantages}
+        \begin{itemize}
+            \item It is not possible to undo the previous step: once the 
+                instances have been assigned to a cluster, they can no 
+                longer be moved around.
+            \item Time complexity: not suitable for large datasets 
+            \item Initial seeds have a strong impact on the final results
+            \item The order of the data has an impact on the final results
+            \item Very sensitive to outliers
+        \end{itemize}
+    \end{answered}
+
 \end{QandA}
 
 \section*{L17 Recommender Systems \textemdash{} Tue Mar 10}
 \begin{QandA}
     \item Define the recommendation systems, why using Recommender Systems?
+    \begin{answered}
+    \end{answered}
     
     \item What types of recommendation systems, list them, then draw diagrams show the working mechanism of each?
+    \begin{answered}
+    \end{answered}
     
     \item List advantages and disadvantages of both collaborative filtering and content-based recommenders.
+    \begin{answered}
+    \end{answered}
     
     \item How to fill rates of users who have not rated any movies?
+    \begin{answered}
+    \end{answered}
+
 \end{QandA}
 
-\section*{L18 Large Scale and Online Learning  \textemdash{}Thu Mar 12}
+\section*{L18 Large Scale and Online Learning  \textemdash{} Thu Mar 12}
 \begin{QandA}
     \item Supervised Learning, Semi-Supervised, and Unsupervised Learning for what kinds of applications can be used? 
           What is the different between them in terms of input and output samples?
-    
+    \begin{answered}
+    \end{answered}
+      
+          
     \item What are the differences between Gradient Descent types: Batch, Stochastic, and Mini batch? 
           Which one is the faster to converge? 
-    
+    \begin{answered}
+    \end{answered}
+      
+          
     \item What are the hardware-based solutions can be used to machine learning for big data? 
+    \begin{answered}
+    \end{answered}
     
     \item What are the platforms for online machine learning algorithms?
+    \begin{answered}
+    \end{answered}
 
 \end{QandA}
 
 \section*{L19 Ensemble Learning \textemdash{} Thu Mar 19}
 \begin{QandA}
     \item Define the ensemble learning, illustrate the key motivation of the ensemble learning, then draw the general idea diagram of the ensemble learning
-    
+    \begin{answered}
+    \end{answered}
+
     \item List the ensemble methods that minimize variance and bias.
-    
+    \begin{answered}
+    \end{answered}
+
     \item What are the different methods for changing training data? List them, then illustrate the working mechanism of each method, support your working mechanisms with illustration diagrams.
-    
+    \begin{answered}
+    \end{answered}
+
     \item Can a set of weak learners create a single strong learner?
-    
+    \begin{answered}
+    \end{answered}
+
     \item What are the main features of the Random Forest method?
+    \begin{answered}
+    \end{answered}
 
 \end{QandA}
 
 \section*{L20 k-Nearest Neighbors (kNNs) \textemdash{} Tue Mar 24}
 \begin{QandA} 
-
     \item What are the Idea, algorithm, and types of the Instance-Based Learning?
+    \begin{answered}
+    \end{answered}
 
     \item List the k-Nearest Neighbors (k-NNs) Main Steps.
+    \begin{answered}
+    \end{answered}
 
     \item What are the three require things to implement the k-NNs?
+    \begin{answered}
+    \end{answered}
 
     \item How to classify an unknown instance (sample) using the k-NNs?
+    \begin{answered}
+    \end{answered}
 
     \item What are the two common distance metrics used for k-NNs?
+    \begin{answered}
+    \end{answered}
 
     \item List Advantages and Disadvantages of k-NNs.
+    \begin{answered}
+    \end{answered}
 
 \end{QandA}
 
 \section*{L21 Principle Components Analysis (PCA) \textemdash{} Thu Mar 26}
 \begin{QandA}
     \item Define the principle components analysis (PCA), then list the 3 main fields could be used to and 3 application examples.
+    \begin{answered}
+    \end{answered}
+
     \item What do we mean by the variance and covariance? List the differences between the variance and covariance.
+    \begin{answered}
+    \end{answered}
+
     \item Illustrate the main tasks of the PCA Process \textemdash{} step 1.
+    \begin{answered}
+    \end{answered}
+
     \item How we could derive new datasets through the PCA Process \textemdash{} step 5?
+    \begin{answered}
+    \end{answered}
+
 \end{QandA}
 
 \section*{L22 Recurrent Neural Networks \textemdash{} Tue Apr 7}
 \begin{QandA}
     \item Define RNNs, the show whether RNNs are Supervised or Unsupervised Learning? 
+    \begin{answered}
+    \end{answered}
+
     \item What is the major difference between RNNs and FNNs? illustrate that.
+    \begin{answered}
+    \end{answered}
+
     \item List types AND architectures of RNNs, then draw the architecture of traditional RNNs.
+    \begin{answered}
+    \end{answered}
+
     \item List, then illustrate the three main training approaches of RNNs.
+    \begin{answered}
+    \end{answered}
+
     \item What are the pros and cons of the typical RNNs architecture?
+    \begin{answered}
+    \end{answered}
+
 \end{QandA}
 
 \section*{L23 Reinforcement Learning \textemdash{} Thu Apr 9}
 \begin{QandA}
     \item List the four main machine learning types. 
+    \begin{answered}
+    \end{answered}
+
     \item Define the reinforcement learning with a diagram, then compare between the 
           reinforcement learning and supervised learning.
+    \begin{answered}
+    \end{answered}
+      
     \item Draw the generic learning model to learn from data. Then define the main operations of 
           it through indicating each operation (i.e. Sensor Data, Feature Extraction, etc.) and 
           related steps.
+    \begin{answered}
+    \end{answered}
+      
     \item What are the key features and elements of the reinforcement learning?
+    \begin{answered}
+    \end{answered}
+
     \item List the 3 types of reinforcement learning.
+    \begin{answered}
+    \end{answered}
+
     \item What makes reinforcement learning different from other machine learning paradigms?
+    \begin{answered}
+    \end{answered}
+
 \end{QandA}
 
 \section*{L24 Autoencoders \textemdash{} Tue Apr 14}
 \begin{QandA}
     \item What are autoencoders? List the general types of autoencoders based on size of hidden layer?
+    \begin{answered}
+    \end{answered}
+
     \item What are the main differences between PCA and autoencoders?
+    \begin{answered}
+    \end{answered}
+
     \item List the key elements AND components of autoencoders? Then illustrate the components.
+    \begin{answered}
+    \end{answered}
+
     \item List, then explain the 3 main properties AND 4 hyperparameters of autoencoders.
+    \begin{answered}
+    \end{answered}
+
     \item List the 8 types AND 5 applications of autoencoders.
+    \begin{answered}
+    \end{answered}
+
 \end{QandA}
 
 \section*{L25 Bayesian Networks \textemdash{} Thu Apr 16}
 \begin{QandA}
     \item What are Bayesian networks (BNs)? List BN components and importance.
+    \begin{answered}
+    \end{answered}
+
     \item List types of probabilistic relationships, then provide 7 real-world Bayesian network applications.
+    \begin{answered}
+    \end{answered}
+
     \item Define hidden Markov model (HMM), then list and illustrate components of HMM.
+    \begin{answered}
+    \end{answered}
+
     \item List, with illustration, the 4 main inference algorithms of Hidden Markov Model.
+    \begin{answered}
+    \end{answered}
+
     \item What are advantages and disadvantages of Hidden Markov Model?
+    \begin{answered}
+    \end{answered}
+
 \end{QandA}
 
 \end{document}
