@@ -773,10 +773,61 @@ repeat
 \begin{QandA}
     \item What are Bayesian networks (BNs)? List BN components and importance.
     \begin{answered}
+        Bayesian Networks are a probabilistic graphical model that represents 
+        a set of random variables and their conditional dependencies via a 
+        directed acyclic graph.
+    \end{answered}
+
+    \item List BN components and importance.
+    \begin{answered}
+        \begin{description}
+            \item[DAG:] directed acyclic graph (BN’s structure)
+            \begin{description}
+                \item[Nodes:] random variables (typically binary or discrete, but methods also exist to handle continuous variables)
+                \item[Arcs:] indicate probabilistic dependencies between nodes (lack of link signifies conditional independence)
+            \end{description}
+             
+            \item[CPD:] conditional probability distribution (BN’s parameters)
+            \begin{itemize}
+                \item Conditional probabilities at each node, usually stored as a table (conditional probability table, or CPT)
+            \end{itemize} 
+        \end{description}
+    
+        \subsubsection*{Why are Bayesian Networks Important?}
+        \begin{itemize}
+            \item Handling of incomplete datasets
+            \item Learning about causal networks
+            \item Facilitating the combination of domain knowledge and data
+            \item Efficient and principled approach for avoiding the over fitting of data
+        \end{itemize}
     \end{answered}
 
     \item List types of probabilistic relationships, then provide 7 real-world Bayesian network applications.
     \begin{answered}
+        Types of probabilistic relationships:
+        \begin{itemize}
+            \item Direct cause
+            \item Indirect cause
+            \item Common cause
+            \item Common effect
+        \end{itemize}
+
+        Real-world Bayesian-Network applications:
+        \begin{itemize}
+            \item Gene Regulatory Network
+            \item Medicine
+            \item Biomonitoring
+            \item Document Classification
+            \item Information Retrieval
+            \item Semantic Search
+            \item Image Processing
+            \item Spam Filter
+            \item Turbo Code
+            \item System Biology
+            \item Medical Diagnosis
+            \item Ventilator-associated Pneumonia (VAP)
+            \item ROC(Receiver Operating Characteristics)
+        \end{itemize}
     \end{answered}
 
     \item Define hidden Markov model (HMM), then list and illustrate components of HMM.
