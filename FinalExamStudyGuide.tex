@@ -483,70 +483,218 @@ repeat
 \begin{QandA}
     \item What are the Idea, algorithm, and types of the Instance-Based Learning?
     \begin{answered}
+        \subsubsection*{Idea}
+        \begin{itemize}
+            \item Similar examples have similar labels.
+            \item Classify new examples like similar training examples.
+        \end{itemize}
+        \subsubsection*{Algorithm}
+        \begin{itemize}
+            \item Given some new example $x$ for which we need to predict its class $y$
+            \item Find most similar training examples
+            \item Classify $x$ “like” these most similar examples
+        \end{itemize}
+        \subsubsection*{Types}
+        \begin{description}
+            \item[Rote-learner] Memorizes entire training data and performs classification 
+                                only if attributes of the record match one of the training examples exactly.
+            \item[Nearest Neighbor] Uses $k$ \textit{closest} points (nearest neighbors) for performing classification.
+        \end{description}
     \end{answered}
 
     \item List the k-Nearest Neighbors (k-NNs) Main Steps.
     \begin{answered}
+        \begin{enumerate}
+            \item For a given instance $T$, get the top $k$ dataset instances that are "nearest" to $T$ (select a reasonable distance measure).
+            \item Inspect the category of these $k$ instances, choose the category $C$ that represent the most instances.
+            \item Conclude that $T$ belongs to category $C$.
+        \end{enumerate}
     \end{answered}
 
     \item What are the three require things to implement the k-NNs?
     \begin{answered}
+        \begin{enumerate}
+            \item \textbf{Feature Space} (Training Data)
+            \item \textbf{Distance metric} (to compute distance between instances)
+            \item The \textbf{value of $\mathbf{k}$} (the number of nearest neighbors to retrieve from which to get majority class)
+        \end{enumerate}
     \end{answered}
 
     \item How to classify an unknown instance (sample) using the k-NNs?
     \begin{answered}
+        \begin{enumerate}
+            \item Compute distance to other training instances
+            \item Identify $k$ nearest neighbors (k-NNs)
+            \item Use class labels of nearest neighbors to determine the class label of the unknown instance
+        \end{enumerate}
     \end{answered}
 
     \item What are the two common distance metrics used for k-NNs?
     \begin{answered}
+        \begin{description}
+            \item[Euclidean Distance (Continuous distribution):] the square root of the sum of the squared differences between a new point (x) and an existing point (y)
+            \item[Manhattan Distance:] the distance between real vectors using the sum of their absolute difference
+        \end{description}
     \end{answered}
 
     \item List Advantages and Disadvantages of k-NNs.
     \begin{answered}
+        \subsubsection*{Advantages}
+            \begin{itemize}
+                \item Simple technique that is easily implemented
+                \item Building model is inexpensive 
+                \item Extremely flexible classification scheme \textemdash{} does not involve preprocessing
+                \item Well suited for
+                    \begin{itemize}
+                        \item Multi-modal classes (classes of multiple forms)
+                        \item Records with multiple class labels
+                    \end{itemize}
+                \item Can sometimes be the best method
+            \end{itemize}
+        \subsubsection*{Disadvantages}
+            \begin{itemize}
+                \item Classifying unknown records are relatively expensive
+                    \begin{itemize}
+                        \item Requires distance computation of k-nearest neighbors
+                        \item Computationally intensive, especially when the size of the training set grows
+                    \end{itemize}
+                \item Accuracy can be severely degraded by the presence of noisy or irrelevant features
+                \item Nearest-neighbor classification expects class conditional probability to be locally constant
+            \end{itemize}
     \end{answered}
-
 \end{QandA}
 
 \section*{L21 Principle Components Analysis (PCA) \textemdash{} Thu Mar 26}
 \begin{QandA}
-    \item Define the principle components analysis (PCA), then list the 3 main fields could be used to and 3 application examples.
+    \item Define principle components analysis (PCA), then list the 3 main fields could be used to and 3 application examples.
     \begin{answered}
+        \subsubsection*{Principle Components Analysis (PCA)}
+        \begin{itemize}
+            \item A technique used to reduce the dimensionality of the data set to 2D or 3D.
+            \item PCA allows us to compute a linear transformation that maps data from a high dimensional space to a lower dimensional sub-space.
+            \item The goal of PCA is to reduce the dimensionality of the data while retaining as much information as possible in the original dataset.
+        \end{itemize}
+        Can be used to:
+        \begin{enumerate}
+            \item Reduce number of dimensions in data
+            \item Find patterns in high-dimensional data
+            \item Visualize data of high dimensionality
+        \end{enumerate}
+        Example applications:
+        \begin{enumerate}
+            \item Face recognition
+            \item Image compression
+            \item Gene expression analysis
+        \end{enumerate}
     \end{answered}
 
     \item What do we mean by the variance and covariance? List the differences between the variance and covariance.
     \begin{answered}
+        \begin{description}
+            \item[Variance and Covariance:] Measure of the \textit{spread} of a set of points around their center of mass (mean)
+            \item[Variance:] Measure of the deviation from the \textit{mean} for points in \textit{one dimension}
+            \item[Covariance:] Measure of how much each of the dimensions vary from the mean with \textit{respect to each other}
+            \begin{itemize}
+                \item Covariance is measured between two dimensions
+                \item Covariance sees if there is a relation between two dimensions
+                \item Covariance between one dimension is the variance
+            \end{itemize} 
+        \end{description}
     \end{answered}
 
     \item Illustrate the main tasks of the PCA Process \textemdash{} step 1.
     \begin{answered}
+        \begin{itemize}
+            \item Subtract the \textit{mean} from each of the data dimensions.
+            \item All the $x$ values have $x$ subtracted and $y$ values have $y$ subtracted from them.
+            \item This produces a dataset whose mean is zero.
+            \item Subtracting the mean makes variance and covariance calculation easier by simplifying their equations.
+            \item The variance and co-variance values are not affected by the mean value.
+        \end{itemize}
     \end{answered}
 
     \item How we could derive new datasets through the PCA Process \textemdash{} step 5?
     \begin{answered}
+        \begin{enumerate}
+            \item Final Data = \textit{Row Feature Vector} $\times$ \textit{Row Zero Mean Data}
+            
+            \item \textit{Row Feature Vector} is the matrix with the eigenvectors in the 
+                  columns transposed so that the eigenvectors are now in the rows, 
+                  with the most significant eigenvector at the top.
+
+            \item \textit{Row Zero Mean Data} is the mean-adjusted data transposed; 
+                  i.e., the data items are in each column, with each row holding 
+                  a separate dimension.
+        \end{enumerate}
     \end{answered}
 
 \end{QandA}
 
 \section*{L22 Recurrent Neural Networks \textemdash{} Tue Apr 7}
 \begin{QandA}
-    \item Define RNNs, the show whether RNNs are Supervised or Unsupervised Learning?
+    \item Define RNNs.
     \begin{answered}
+        Neural nets that allow previous outputs to be used as inputs while having hidden states.
+    \end{answered}
+
+    \item Are RNNs Supervised or Unsupervised Learning?
+    \begin{answered}
+        Supervised: used for time series analysis.
     \end{answered}
 
     \item What is the major difference between RNNs and FNNs? illustrate that.
     \begin{answered}
+        In feed-forward neural networks, the connections between nodes do not form a cycle.  However,
+        in recurrent neural networks, the connections between nodes form cyclic paths.
     \end{answered}
 
     \item List types AND architectures of RNNs, then draw the architecture of traditional RNNs.
     \begin{answered}
+        \begin{enumerate}
+            \item One-to one
+            \item One-to-many
+            \item Many-to-one
+            \item Many-to-many
+        \end{enumerate}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{rnn.png}
+            \caption{Architecture of a traditional RNN}
+            \label{fig:rnn}
+        \end{figure}
+
     \end{answered}
 
-    \item List, then illustrate the three main training approaches of RNNs.
+    \item List, \textcolor{red}{then illustrate the three main training approaches of RNNs.}
     \begin{answered}
+        \begin{description}
+            \item[Back-propagation through-time:] Unfolding RNNs in time and using the extended version of back-propagation.
+            \item[Extended Kalman Filtering (EKF):] A set of mathematical equations that provides efficient computational means to estimate the state of a process, in a way that minimizes the mean of squared error (cost function) on a linear system.
+            \item[Real-Time Recurrent Learning (RTRL):] Computing the error gradient and update weights for each time step.
+        \end{description}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{back_prop_time.png}
+            \caption{Back-propagation through time}
+            \label{fig:backprop}
+        \end{figure}
     \end{answered}
 
     \item What are the pros and cons of the typical RNNs architecture?
     \begin{answered}
+        \subsubsection*{Advantages}
+        \begin{enumerate}
+            \item Possibility of processing input of any length
+            \item Model size $s$ not increasing with size of input
+            \item Computation considers historical information
+            \item Weights are shared across time
+        \end{enumerate}
+        \subsubsection*{Disadvantages}
+        \begin{enumerate}
+            \item Computation being slow
+            \item Difficulty of accessing information from a long time ago
+            \item Cannot consider any future input for the current state
+        \end{enumerate}
     \end{answered}
 
 \end{QandA}
