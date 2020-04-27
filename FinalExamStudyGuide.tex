@@ -77,7 +77,22 @@
 
     \item What are advantages and disadvantages of the Hidden Markov Model?
     \begin{answered}
-        \textcolor{red}{L25 Bayesian Networks \textemdash{} Thu, Apr 16}
+        \subsubsection*{Advantages}
+        \begin{itemize}
+            \item HMMs are very powerful modeling tools
+            \item Statisticians are comfortable with the theory behind hidden Markov models
+            \item HMMs can be combined into larger HMMs
+            \item Easy to read the model and make sense of it
+            \item The model itself can help increase understanding
+        \end{itemize}
+        \subsubsection*{Disadvantages}
+        \begin{itemize}
+            \item State independence
+            \item Not good for RNA folding problems
+            \item Over fitting
+            \item Local maximums
+            \item Speed
+        \end{itemize}
     \end{answered}
 \end{QandA}
 
@@ -766,6 +781,17 @@ repeat
 
     \item Define hidden Markov model (HMM), then list and illustrate components of HMM.
     \begin{answered}
+        A Hidden Markov Model (HMM) is a sequence of random variables, $Z_1,Z_2,\ldots,Z_t,\ldots $ 
+        such that the distribution of $Z_t$ depends only on the(hidden) state $x_t$ of an associated Markov chain.
+
+        A Hidden Markov Model (HMM) is composed of the following:
+        \begin{itemize}
+            \item $\mathcal{X}$ : a finite set of states.
+            \item $\mathcal{Z}$ : a finite set of observations.
+            \item $T : \mathcal{X} \times \mathcal{X} \rightarrow \mathbb{R}_+$, i.e., transition probabilities.
+            \item $M : \mathcal{X} \times \mathcal{Z} \rightarrow \mathbb{R}_+$, i.e., observation probabilities.
+            \item $\pi : \mathcal{X} \rightarrow \mathbb{R}_+$, i.e., prior probability distribution on the initial state.
+        \end{itemize}
     \end{answered}
 
     \item List, with illustration, the 4 main inference algorithms of Hidden Markov Model.
@@ -774,6 +800,23 @@ repeat
 
     \item What are advantages and disadvantages of Hidden Markov Model?
     \begin{answered}
+        \subsubsection*{Advantages}
+        \begin{itemize}
+            \item HMMs are very powerful modeling tools
+            \item Statisticians are comfortable with the theory behind hidden Markov models
+            \item HMMs can be combined into larger HMMs
+            \item Easy to read the model and make sense of it
+            \item The model itself can help increase understanding
+        \end{itemize}
+        \subsubsection*{Disadvantages}
+        \begin{itemize}
+            \item State independence
+            \item Not good for RNA folding problems
+            \item Over fitting
+            \item Local maximums
+            \item Speed
+        \end{itemize}
+
     \end{answered}
 
 \end{QandA}
