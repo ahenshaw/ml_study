@@ -10,6 +10,8 @@
 \renewcommand\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
+\usepackage{arydshln}
+\usepackage{float}
 
 \lstset{
   mathescape
@@ -229,7 +231,7 @@ repeat
         \begin{itemize}
             \item A binary tree that shows how clusters are merged/split hierarchically
             \item Each node on the tree is a cluster; each leaf node is a singleton cluster
-            \begin{figure}[h!]
+            \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.8\textwidth]{dendogram.png}
                 \caption{Dendogram}
@@ -317,7 +319,7 @@ repeat
             \item Content-based recommenders \textemdash{} Characteristic information
             \item Collaborative filtering recommenders \textemdash{} User-item interactions
         \end{enumerate}
-        \begin{figure}[h!]
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.8\textwidth]{recommenders.png}
             \caption{Recommender Types}
@@ -361,8 +363,8 @@ repeat
 
     \item How to fill rates of users who have not rated any movies?
     \begin{answered}
-        Perform \textit{Mean Normalization}, \textcolor{Maroon}{?? then assign 0 to each non-ranked movie.??}
-        \begin{figure}[h!]
+        Perform \textit{Mean Normalization}, \textcolor{red}{?? then assign 0 to each non-ranked movie.??}
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.8\textwidth]{mean_normalization.png}
             \caption{Mean Normalization}
@@ -375,24 +377,37 @@ repeat
 
 \section*{L18 Large Scale and Online Learning  \textemdash{} Thu Mar 12}
 \begin{QandA}
-    \color{red}
+    
     \item Supervised Learning, Semi-Supervised, and Unsupervised Learning
           for what kinds of applications can be used?
-          What is the difference between them in terms of input and output samples?
+          \color{red}What is the difference between them in terms of input and output samples?
     \color{black}
     \begin{answered}
+        \begin{tabular}{ r | l l l }
+        \hline
+        Learning Type   & Applications    & Input & Output\\
+        \hline
+            Supervised  & classification  & labeled      &  labeled     \\
+                        & regression      &       &       \\
+        \hdashline
+        Semi-Supervised & classification  &       &       \\
+                        & regression      &       &       \\
+        \hdashline
+           Unsupervised & clustering      & unlabeled      & unlabeled      \\
+        \end{tabular}
+
     \end{answered}
 
 
     \item What are the differences between Gradient Descent types: Batch, Stochastic, and Mini batch?
-          \textcolor{red}{Which one is the faster to converge? }
+          Which one is the faster to converge?
     \begin{answered}
         \begin{enumerate}
             \item Batch Gradient Descent: Uses all $m$ examples in each iteration
             \item Stochastic Gradient Descent: Uses 1 example in each iteration
             \item Mini-batch Gradient Descent: Uses $b$ examples in each iteration
         \end{enumerate}
-
+        \textit{Batch} is the fastest to converge.
     \end{answered}
 
     \item What are the hardware-based solutions can be used to machine learning for big data?
@@ -455,14 +470,14 @@ repeat
             \item[Bagging:] Resample training data (\textbf{see figure \ref{fig:bagging}})
             \item[Boosting:] Reweight training data (\textbf{see figure \ref{fig:boosting}})
         \end{description}
-        \begin{figure}[h!]
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\textwidth]{bagging.png}
             \caption{Bagging}
             \label{fig:bagging}
         \end{figure}
 
-        \begin{figure}[h!]
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\textwidth]{boosting.png}
             \caption{Boosting}
@@ -671,7 +686,7 @@ repeat
             \item Many-to-one
             \item Many-to-many
         \end{enumerate}
-        \begin{figure}[h!]
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\textwidth]{rnn.png}
             \caption{Architecture of a traditional RNN}
@@ -687,7 +702,7 @@ repeat
             \item[Extended Kalman Filtering (EKF):] A set of mathematical equations that provides efficient computational means to estimate the state of a process, in a way that minimizes the mean of squared error (cost function) on a linear system.
             \item[Real-Time Recurrent Learning (RTRL):] Computing the error gradient and update weights for each time step.
         \end{description}
-        \begin{figure}[h!]
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\textwidth]{back_prop_time.png}
             \caption{Back-propagation through time}
@@ -718,53 +733,224 @@ repeat
 \begin{QandA}
     \item List the four main machine learning types.
     \begin{answered}
+        \begin{enumerate}
+            \item Reinforcement
+            \item Supervised
+            \item Semi-supervised
+            \item Unsupervised
+        \end{enumerate}
     \end{answered}
 
-    \item Define the reinforcement learning with a diagram, then compare between the
+    \item Define reinforcement learning with a diagram, then compare between the
           reinforcement learning and supervised learning.
     \begin{answered}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{reinforcement.png}
+            \caption{Reinforcement}
+            \label{fig:reinforcement}
+        \end{figure}
+
+        \begin{itemize}
+            \item Supervised learning is \textit{teach by example}
+            \item Reinforcement learning is \textit{teach by experience}
+        \end{itemize}
+        
     \end{answered}
 
     \item Draw the generic learning model to learn from data. Then define the main operations of
           it through indicating each operation (i.e. Sensor Data, Feature Extraction, etc.) and
           related steps.
     \begin{answered}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.3\textwidth]{generic_learning_model.png}
+            \caption{Generic Learning Model}
+            \label{fig:generic}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.3\textwidth]{sensor_data.png}
+            \caption{Generic Learning Model - Sensor Data}
+            \label{fig:sensor}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.3\textwidth]{feature_extraction.png}
+            \caption{Generic Learning Model - Feature Extraction}
+            \label{fig:feature}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.3\textwidth]{data_representation.png}
+            \caption{Generic Learning Model - Data Representation}
+            \label{fig:data}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.3\textwidth]{knowledge_and_reasoning.png}
+            \caption{Generic Learning Model - Knowledge and Reasoning}
+            \label{fig:knowledge}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.3\textwidth]{planning_and_action.png}
+            \caption{Generic Learning Model - Planning and Action}
+            \label{fig:planning}
+        \end{figure}
+
     \end{answered}
 
     \item What are the key features and elements of the reinforcement learning?
     \begin{answered}
+        \subsubsection*{Key Features}
+        \begin{itemize}
+            \item Learner is not told which actions to take
+            \item \textit{Trial-and-Error} search
+            \item Possibility of delayed reward (sacrifice short-term gains for greater long-term gains)
+            \item The need to explore and exploit
+            \item Considers the whole problem of a goal-directed agent interacting with an uncertain environment
+            \item \textit{Exploration} finds more information about the environment
+            \item \textit{Exploitation} exploits known information to maximize reward
+            \item It is usually important to explore as well as exploit
+        \end{itemize}
+
+        \subsubsection*{Elements of Reinforcement Learning}
+        \begin{description}
+            \item[Policy:] what to do
+            \item[Reward:] what is good
+            \item[Value:] what is good because it predicts reward
+            \item[Model:] what follows what
+        \end{description}
+
     \end{answered}
 
     \item List the 3 types of reinforcement learning.
     \begin{answered}
+        \begin{enumerate}
+            \item Model-based
+            \item Value-based
+            \item Policy-based
+        \end{enumerate}
     \end{answered}
 
     \item What makes reinforcement learning different from other machine learning paradigms?
     \begin{answered}
+        \begin{itemize}
+            \item There is no supervisor, only a reward signal
+            \item Feedback is delayed, not instantaneous
+            \item Time really matters (sequential, no complete data)
+            \item Agent’s actions affect the subsequent data it receives
+        \end{itemize}
     \end{answered}
 
 \end{QandA}
 
 \section*{L24 Autoencoders \textemdash{} Tue Apr 14}
 \begin{QandA}
-    \item What are autoencoders? List the general types of autoencoders based on size of hidden layer?
+    \item What are autoencoders?
     \begin{answered}
+        An autoencoder neural network is an Unsupervised Machine-Learning 
+        algorithm that applies backpropagation, setting the target values 
+        to be equal to the inputs. Autoencoders are used to reduce the size
+        of our inputs into a smaller representation.  If anyone needs the 
+        original data, they can reconstruct it from the compressed data.
+    \end{answered}
+
+    \item List the general types of autoencoders based on size of hidden layer?
+    \begin{answered}
+        \begin{description}
+            \item[Undercomplete] autoencoders have hidden layer size smaller than input layer size
+            \item[Overcomplete] autoencoders have much larger hidden layer sizes
+        \end{description}
     \end{answered}
 
     \item What are the main differences between PCA and autoencoders?
     \begin{answered}
+        \begin{itemize}
+            \item An autoencoder can learn \textbf{non-linear transformations} with a 
+                  \textbf{non-linear activation function} and multiple layers.
+            \item It doesn’t have to learn dense layers. It can use \textbf{convolutional
+                  layers} to learn which is better for video, image and series data.
+            \item It is more efficient to learn several layers with an autoencoder
+                  rather than learn one huge transformation with PCA.
+            \item An autoencoder provides a representation of each layer as the output.
+            \item It can make use of \textbf{pre-trained layers} from another model to 
+                  apply transfer learning to enhance the encoder/decoder.
+        \end{itemize}
     \end{answered}
 
-    \item List the key elements AND components of autoencoders? Then illustrate the components.
+    \item List the key elements AND components of autoencoders? 
+          Then illustrate the components.
     \begin{answered}
+        \subsubsection*{Key Elements of autoencoders}
+        \begin{itemize}
+            \item It is an Unsupervised ML algorithm similar to PCA
+            \item It minimizes the same objective function as PCA
+            \item It is a neural network
+            \item The neural network's target output is it input
+        \end{itemize}
+        \subsubsection*{Components of Autoencoders}
+        \begin{itemize}
+            \item Encoder
+            \item Code
+            \item Decoder
+        \end{itemize}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{autoencoder.png}
+            \caption{Components of Autoencoders}
+            \label{fig:autoencoder}
+        \end{figure}
+
     \end{answered}
 
     \item List, then explain the 3 main properties AND 4 hyperparameters of autoencoders.
     \begin{answered}
+        \subsubsection*{Autoencoder main properties}
+        \begin{description}
+            \item[Unsupervised] don't need explicit labels to train on
+            \item[Data-specific] only able to compress data similar to what they were trained on
+            \item[Lossy] output will be a close but degraded representation
+        \end{description}
+
+        \subsubsection*{Autoencoder hyperparameters}
+        \begin{description}
+            \item[Code Size] It represents the number of nodes in the middle layer. Smaller size results in more compression.
+            \item[Number of Layers] The autoencoder can consist of as many layers as we want.
+            \item[Number of nodes per layer] The number of nodes per layer decreases with each subsequent layer of the encoder and increases back in the decoder. The decoder is symmetric to the encoder in terms of the layer structure.
+            \item[Loss Function] We either use mean squared error or binary cross-entropy. If the input values are in the range [0, 1] then we typically use cross-entropy, otherwise, we use the mean-squared error.
+        \end{description}}
+        
     \end{answered}
 
     \item List the 8 types AND 5 applications of autoencoders.
     \begin{answered}
+        \subsubsection*{Types of autoencoders}
+        \begin{enumerate}
+            \item Stacking
+            \item Convolution
+            \item Deep
+            \item Denoising
+            \item Sparse
+            \item Contractive
+            \item Variational
+            \item Generative adversarial networks
+        \end{enumerate}
+        \subsubsection*{Applications of autoencoders}
+        \begin{enumerate}
+            \item Image Coloring
+            \item Feature Variation
+            \item Dimensionality Reduction
+            \item Denoising Images
+            \item Watermark Removal
+        \end{enumerate}
     \end{answered}
 
 \end{QandA}
